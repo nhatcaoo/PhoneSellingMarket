@@ -6,6 +6,6 @@
 
  <link href="/P015/CSS_Style/Home.css" rel="stylesheet" type="text/css"/>
 <div id="bigHeader">
-                <h1 class="magin logo">Maria Bagnarelli's Cafe</h1>
-                <p class="colorWhite fontTimeNewRoman subLogo colorWhite">Welcome to this website</p>
+                <h1 class="magin logo">Loan's Phone</h1>
+                <p class="colorWhite fontTimeNewRoman subLogo colorWhite">Bring your smartest technology devices</p>
             </div>
