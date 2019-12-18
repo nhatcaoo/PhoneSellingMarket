@@ -24,7 +24,7 @@
             </c:if>
             <form action="../LoginController">
                 <h2>Welcome to Loan's Phone </h2>
-                <table border="1 solid black"  cellspacing="0" class="center">
+                <table class="center">
                     <tr>
                         <th>Username</th>
                         <td><input value="" name="username"></td>
