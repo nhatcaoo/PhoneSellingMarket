@@ -5,5 +5,5 @@
 --%>
  <link href="/P015/CSS_Style/Home.css" rel="stylesheet" type="text/css"/>
 <div id="theFooter" class="fontArial">
-                <p class="floatRight">065356</p>
+                <p class="floatRight">Loan's boy technique crew! <3</p>
             </div>

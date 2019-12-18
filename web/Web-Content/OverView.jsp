@@ -19,16 +19,29 @@
             <%@include file="header.jsp" %>
             <!-- the menu bar background color red -->
             <div id="menuBar">
-                <a href="HomeController" class="subMenuBar noneLine">Home</a>
-                <a class="subMenuBar noneLine fontBold">About my Cakes</a>
-                <a href="/J3.L.P0015/FindController" class="subMenuBar noneLine">Find Maria's Cafe</a>
+                
+                <form name="form1" method="get" style="margin-left: 700px;" action="servlet/PrintResultsServlet"> 
+
+                    <select name="Events">
+                        <option value="0" selected>Select Catalogue</option>
+                        <option value="100M Run">100M Run</option>
+                        <option value="200M Run">200M Run</option>
+                        <option value="400M Run">400M Run</option>
+                        <option value="800M Run">800M Run</option>
+                    </select>
+                </form>
+                <form name="form2" method="POST" style="margin-left: 900px; margin-top: -20px;">
+                    <button type="submit">OK</button>
+                    
+                </form>
+               
             </div>
             <!-- display all content and advertising -->
             <div id="bigContener">
                 <!-- display all blog (list blog) -->
                 <div id="listBlogs" class="fontArial">
                     <!-- display sub content -->
-                    <h1 class="title">Overview-Blog</h1>
+                    <h1 class="title">Products</h1>
                     <c:forEach items="${arrBlog}" var="row">
                         <Div id="linePaginCafe">
                             <a class="fontBlack noneLine" href="/J3.L.P0015/DetailController?ID=${row.id}">
@@ -58,7 +71,7 @@
                     </div>
                 </div>
                 <!-- the advertising -->
-                <%@include file= "advertisingPage.jsp" %>
+                
             </div>
             <!--Display the footer of pages-->
             <%@include file="footer.jsp" %>
