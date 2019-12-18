@@ -22,9 +22,9 @@
                     alert("${param.error}");
                 </script>
             </c:if>
-            <form action="../LoginController">
+                <form action="../LoginController" style="text-align: center;">
                 <h2>Welcome to Loan's Phone </h2>
-                <table class="center">
+                <table style="margin-left: 400px;">
                     <tr>
                         <th>Username</th>
                         <td><input value="" name="username"></td>
@@ -35,7 +35,7 @@
                     </tr>
                 </table>
                 <br>
-                <input type="submit" value="Login" style="width: 10%;margin-left: 600px" />
+                <input type="submit" value="Login" style="width: 10%;margin-left: 0px" />
             </form>
             <%@include file="footer.jsp" %>
         </div>

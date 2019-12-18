@@ -33,43 +33,52 @@ public class LoginController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-         String uname = request.getParameter("username");
-            String psw = request.getParameter("password");
-            DataDAO dataDao = new DataDAO();
-             int checkExited = 0;
-            int checkPsw = 0;
-            String error = null;
-           try{
-            List<UserModel> users = dataDao.selectAccount(); 
-            for (int i = 0; i < users.size(); i++) {
-                if (users.get(i).getUserName().equals(uname)) {
+            String username = (String) request.getParameter("username");
+            String password =(String)  request.getParameter("password");
+           if(username==null&&password==null) response.sendRedirect("/PhoneSellingMarket/Web-Content/Login.jsp");
+            if(username==null) username ="";
+            if(password==null) password = "";
+            
+            DataDAO dao = new DataDAO();
+            List<UserModel> list = dao.selectAccount();
+            String error = "";
+            int checkTemp = 0;
+            int checkExited = 0;
+            for (int i = 0; i < list.size(); i++) {
+                
+             
+                System.out.println(list.get(i).getUserName().trim());
+                if (username.equals(list.get(i).getUserName().trim())) {
                     checkExited = 1;
-                    if (users.get(i).getPassword().equals(psw)) {
-                        checkPsw = 1;
+                    if (!password.equals(list.get(i).getPassword().trim())) {
+                        checkTemp = 1;
+                        error = "your password is not correct";
+                        break;
                     }
                 }
             }
-            String url = "";
-            if (checkExited == 0) {
-                error = "account is not exited";
-            } else {
-                if (checkPsw == 0) {
-                    error = "password is incorrect";
+            System.out.println("checkTemp= " + checkTemp);
+            System.out.println("Error 1: " + error);
+            String url="";
+            if (checkTemp == 0) {
+                if (checkExited == 0) {
+                    error = "username not exists";
+                    url = "/PhoneSellingMarket/Web-Content/Login.jsp?error=" + error;
+                }else{
+                    request.getSession().setAttribute("username", username);
+                    request.getSession().setAttribute("psw", password);
+                   url = "/PhoneSellingMarket/Web-Content/Overview.jsp"; 
                 }
+            }else{
+                 url = "/PhoneSellingMarket/Web-Content/Login.jsp";
             }
-            if (error.length() == 0) {
-                 request.getSession().setAttribute("uname", uname);
-                 request.getSession().setAttribute("psw",psw);
-                  url = "Home.jsp";
-                  response.sendRedirect(url);
-            } else {
-                url = "Home.jsp?error=" + error;
-                response.sendRedirect(url);
-            }
-           }catch(Exception e)
-           {
-           
-           }
+//            
+//      
+System.out.println(url);
+            response.sendRedirect(url);
+
+        } catch (Exception ex) {
+            //Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

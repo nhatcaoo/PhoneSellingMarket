@@ -9,8 +9,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="/P015/CSS_Style/Home.css" rel="stylesheet" type="text/css"/>
-        <title>Home Page</title>
+        <link href="/PhoneSellingMarket/CSS_Style/Home.css" rel="stylesheet" type="text/css"/>
+        <title>View Cart</title>
     </head>
     <body>
         <div id="mainBoxShadow">
@@ -19,8 +19,8 @@
             <!-- the menu bar background color red -->
             <div id="menuBar">
                 <a href="/P015/HomeController" class="subMenuBar noneLine">Home</a>
-                <a href="/P015/OverViewController?CurrentPage=1" class="subMenuBar noneLine fontBold">About my Cakes</a>
-                <a href="/P015/FindController" class="subMenuBar noneLine">Find Maria's Cafe</a>
+                <a href="/P015/OverViewController?CurrentPage=1" class="subMenuBar noneLine fontBold">View Cart</a>
+                <a href="/P015/FindController" class="subMenuBar noneLine">Logout</a>
             </div>
             <!-- display all content and advertising -->
             <div id="bigContener">
@@ -36,7 +36,7 @@
                     </div>
             </div>
                 <!-- the advertising -->
-                <%@include file= "advertisingPage.jsp" %>
+                
             </div>
             <!--Display the footer of pages-->
             <%@include file="footer.jsp" %>
