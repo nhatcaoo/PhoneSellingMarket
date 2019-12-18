@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import dal.DataDAO;
+import javax.servlet.http.Cookie;
+
 /**
  *
  * @author This PC
@@ -34,19 +36,24 @@ public class LoginController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String username = (String) request.getParameter("username");
-            String password =(String)  request.getParameter("password");
-           if(username==null&&password==null) response.sendRedirect("/PhoneSellingMarket/Web-Content/Login.jsp");
-            if(username==null) username ="";
-            if(password==null) password = "";
-            
+            String password = (String) request.getParameter("password");
+            if (username == null && password == null) {
+                response.sendRedirect("/PhoneSellingMarket/Web-Content/Login.jsp");
+            }
+            if (username == null) {
+                username = "";
+            }
+            if (password == null) {
+                password = "";
+            }
+
             DataDAO dao = new DataDAO();
             List<UserModel> list = dao.selectAccount();
             String error = "";
             int checkTemp = 0;
             int checkExited = 0;
             for (int i = 0; i < list.size(); i++) {
-                
-             
+
                 System.out.println(list.get(i).getUserName().trim());
                 if (username.equals(list.get(i).getUserName().trim())) {
                     checkExited = 1;
@@ -55,26 +62,31 @@ public class LoginController extends HttpServlet {
                         error = "your password is not correct";
                         break;
                     }
+                    else  {
+                        Cookie c1= new Cookie("userID",String.valueOf(list.get(i).getUserID()) );
+                        response.addCookie(c1 );}
                 }
             }
             System.out.println("checkTemp= " + checkTemp);
             System.out.println("Error 1: " + error);
-            String url="";
+            String url = "";
             if (checkTemp == 0) {
                 if (checkExited == 0) {
                     error = "username not exists";
                     url = "/PhoneSellingMarket/Web-Content/Login.jsp?error=" + error;
-                }else{
+                } else {
                     request.getSession().setAttribute("username", username);
                     request.getSession().setAttribute("psw", password);
-                   url = "/PhoneSellingMarket/Web-Content/Overview.jsp"; 
+                    
+                    url = "/PhoneSellingMarket/HomeContronller";
                 }
-            }else{
-                 url = "/PhoneSellingMarket/Web-Content/Login.jsp";
+            } else {
+                url = "/PhoneSellingMarket/Web-Content/Login.jsp";
             }
 //            
-//      
-System.out.println(url);
+//          
+            
+            System.out.println(url);
             response.sendRedirect(url);
 
         } catch (Exception ex) {

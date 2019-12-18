@@ -10,72 +10,74 @@ package Model;
  * @author Beloyten
  */
 public class ProductModel {
-    private int ProductID;
-    private String ProductName;
-    private String ProductContent;
-    private String Pricture;
-    private String Price;
-    private int CatalogueID;
+    private int productID;
+    private String productName;
+    private String productContent;
+    private String pricture;
+    private String price;
+    private int catalogueID;
+
+    public ProductModel(int productID, String productName, String productContent, String pricture, String price, int catalogueID) {
+        this.productID = productID;
+        this.productName = productName;
+        this.productContent = productContent;
+        this.pricture = pricture;
+        this.price = price;
+        this.catalogueID = catalogueID;
+    }
 
     public ProductModel() {
     }
 
-    public ProductModel(int ProductID, String ProductName, String ProductContent, String Pricture, String Price, int CatalogueID) {
-        this.ProductID = ProductID;
-        this.ProductName = ProductName;
-        this.ProductContent = ProductContent;
-        this.Pricture = Pricture;
-        this.Price = Price;
-        this.CatalogueID = CatalogueID;
-    }
-
     public int getProductID() {
-        return ProductID;
+        return productID;
     }
 
-    public void setProductID(int ProductID) {
-        this.ProductID = ProductID;
+    public void setProductID(int productID) {
+        this.productID = productID;
     }
 
     public String getProductName() {
-        return ProductName;
+        return productName;
     }
 
-    public void setProductName(String ProductName) {
-        this.ProductName = ProductName;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public String getProductContent() {
-        return ProductContent;
+        return productContent;
     }
 
-    public void setProductContent(String ProductContent) {
-        this.ProductContent = ProductContent;
+    public void setProductContent(String productContent) {
+        this.productContent = productContent;
     }
 
     public String getPricture() {
-        return Pricture;
+        return pricture;
     }
 
-    public void setPricture(String Pricture) {
-        this.Pricture = Pricture;
+    public void setPricture(String pricture) {
+        this.pricture = pricture;
     }
 
     public String getPrice() {
-        return Price;
+        return price;
     }
 
-    public void setPrice(String Price) {
-        this.Price = Price;
+    public void setPrice(String price) {
+        this.price = price;
     }
 
     public int getCatalogueID() {
-        return CatalogueID;
+        return catalogueID;
     }
 
-    public void setCatalogueID(int CatalogueID) {
-        this.CatalogueID = CatalogueID;
+    public void setCatalogueID(int catalogueID) {
+        this.catalogueID = catalogueID;
     }
+
+    
     
     
 }

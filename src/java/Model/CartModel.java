@@ -10,62 +10,83 @@ package Model;
  * @author Beloyten
  */
 public class CartModel {
-    private int UserID;
-    private int ProductID;
-    private int Quantity;
-    private int CartID;
-    private int Status;
+    private int userID;
+    private int productID;
+    private int quantity;
+    private int cartID;
+    private int status;
+    private String picture;
 
     public CartModel() {
     }
 
-    public CartModel(int UserID, int ProductID, int Quantity, int CartID, int Status) {
-        this.UserID = UserID;
-        this.ProductID = ProductID;
-        this.Quantity = Quantity;
-        this.CartID = CartID;
-        this.Status = Status;
+    public CartModel(int userID, int productID, int quantity, int cartID, int status) {
+        this.userID = userID;
+        this.productID = productID;
+        this.quantity = quantity;
+        this.cartID = cartID;
+        this.status = status;
+    }
+
+    public CartModel(int userID, int productID, int quantity, int cartID, int status, String picture) {
+        this.userID = userID;
+        this.productID = productID;
+        this.quantity = quantity;
+        this.cartID = cartID;
+        this.status = status;
+        this.picture = picture;
     }
 
     public int getUserID() {
-        return UserID;
+        return userID;
     }
 
-    public void setUserID(int UserID) {
-        this.UserID = UserID;
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
     public int getProductID() {
-        return ProductID;
+        return productID;
     }
 
-    public void setProductID(int ProductID) {
-        this.ProductID = ProductID;
+    public void setProductID(int productID) {
+        this.productID = productID;
     }
 
     public int getQuantity() {
-        return Quantity;
+        return quantity;
     }
 
-    public void setQuantity(int Quantity) {
-        this.Quantity = Quantity;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public int getCartID() {
-        return CartID;
+        return cartID;
     }
 
-    public void setCartID(int CartID) {
-        this.CartID = CartID;
+    public void setCartID(int cartID) {
+        this.cartID = cartID;
     }
 
     public int getStatus() {
-        return Status;
+        return status;
     }
 
-    public void setStatus(int Status) {
-        this.Status = Status;
+    public void setStatus(int status) {
+        this.status = status;
     }
+
+    
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+    
     
     
 }

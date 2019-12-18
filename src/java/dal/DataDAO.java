@@ -35,15 +35,15 @@ public class DataDAO {
               DBContext db = new DBContext();
             Connection con = db.getConnection();
             PreparedStatement pre = con.prepareStatement(sql);
-            pre.setInt(1, i);
-            pre.setInt(2, (i + 5));
+            pre.setInt(1, (i-1)*5+1);
+            pre.setInt(2, (i + 4));
             ResultSet rs = pre.executeQuery();
            
             while (rs.next()) {
                 int ProductId = rs.getInt(1);
                 String ProductName = rs.getString(2);
                 String ProductContent = rs.getString(3);
-                String urlImage = "images" + "/" + rs.getString(4);
+                String urlImage = "/PhoneSellingMarket/image" + "/" + rs.getString(4);
                 String Price = Double.toString(rs.getDouble(5));
                 int CatalogueId = rs.getInt(6);
 
@@ -70,7 +70,7 @@ public class DataDAO {
                 int ProductId = rs.getInt(1);
                 String ProductName = rs.getString(2);
                 String ProductContent = rs.getString(3);
-                String urlImage = "images" + "/" + rs.getString(4);
+                String urlImage = "/PhoneSellingMarket/image" + "/" + rs.getString(4);
                 String Price = Double.toString(rs.getDouble(5));
                 int CatalogueId = rs.getInt(6);
 
@@ -118,7 +118,7 @@ public class DataDAO {
                 int ProductId = rs.getInt(1);
                 String ProductName = rs.getString(2);
                 String ProductContent = rs.getString(3);
-                String urlImage = "images" + "/" + rs.getString(4);
+                String urlImage = "/PhoneSellingMarket/image" + "/" + rs.getString(4);
                 String Price = Double.toString(rs.getDouble(5));
                 int CatalogueId = rs.getInt(6);
 

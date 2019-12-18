@@ -12,6 +12,10 @@
         <servlet-name>HomeContronller</servlet-name>
         <servlet-class>controller.HomeContronller</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DetailController</servlet-name>
+        <servlet-class>controller.DetailController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loo</servlet-name>
         <url-pattern>/loo</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>HomeContronller</servlet-name>
         <url-pattern>/HomeContronller</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DetailController</servlet-name>
+        <url-pattern>/DetailController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

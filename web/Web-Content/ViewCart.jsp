@@ -1,7 +1,7 @@
 <%-- 
-    Document   : OverView
-    Created on : Jun 1, 2018, 11:46:30 AM
-    Author     : duydnse04661
+    Document   : ViewCart
+    Created on : Dec 19, 2019, 6:11:20 AM
+    Author     : Beloyten
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -11,7 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="/PhoneSellingMarket/CSS_Style/Home.css" rel="stylesheet" type="text/css"/>
-        <title>OverView Page</title>
+        <title>ViewCart</title>
     </head>
     <body>
         <div id="mainBoxShadow">
@@ -46,15 +46,16 @@
                 <div id="listBlogs" class="fontArial">
                     
                     <!-- display sub content -->
-                    <h1 class="title">Products</h1>
-                    <c:forEach items="${Products}" var="row">
+                    <h1 class="title">Cart</h1>
+                    <c:forEach items="${Cart}" var="row">
                         <Div id="linePaginCafe">
                             <a class="fontBlack noneLine" href="/PhoneSellingMarket/DetailController?ID=${row.productID}">
                                 <h1 class="fontTimeNewRoman">${row.productName}</h1></a>
                             <div id="contentDetail">
                                 <span>
                                    <img class="imgDetail floatRight" src="${row.pricture}"/>
-                                    <p class="fontSortDescription magin">${row.productContent}</p>
+                                    <p class="fontSortDescription magin">${row.quantity}</p>
+                                    <p class="fontSortDescription magin">${row.status}</p>
                                 </span>
                             </div>
                         </Div>

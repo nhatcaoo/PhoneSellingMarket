@@ -5,6 +5,8 @@
  */
 package controller;
 
+import Model.CatalogueModel;
+import Model.NumberPagination;
 import Model.ProductModel;
 import dal.DataDAO;
 import java.io.IOException;
@@ -34,35 +36,75 @@ public class HomeContronller extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try {
-              /* TODO output your page here. You may use following sample code. */
-         
-            List<ProductModel> product = new ArrayList<>();
-            DataDAO daoProduct = new DataDAO();
-
-            int page = 1;
+//        try {
+//              /* TODO output your page here. You may use following sample code. */
+//            List<CatalogueModel> catalogues = new ArrayList<>();
+//           
+//            List<ProductModel> products = new ArrayList<>();
+//            DataDAO daoProduct = new DataDAO();
+//            //catalogues = daoProduct.get
+//            int page = 1;
+//            try {
+//                page = Integer.parseInt(request.getParameter("page"));
+//            } catch (Exception e) {
+//                page = 1;
+//            }
+//            int tempPageNumber = daoProduct.getNumberProduct();//lay so san pham
+//            int numberOfPage = tempPageNumber / 5;
+//            if (tempPageNumber % 5 != 0) {
+//                numberOfPage++;
+//            }
+//            int temp = 5 * page - 4;
+//
+//            products = daoProduct.getProduct();   
+//            request.setAttribute("Products", products);
+//            request.setAttribute("Page", page);
+//            request.setAttribute("NumberOfPage", numberOfPage);
+//            getServletContext().getRequestDispatcher("/PhoneSellingMarket/Web-Content/OverView.jsp").forward(request, response);
+//        } catch (Exception e) {
+//            System.out.println(e);
+//            response.sendRedirect("ErrorPage.jsp");
+//        }
+//        
+//    }
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
             try {
-                page = Integer.parseInt(request.getParameter("page"));
+                String text = (String) request.getParameter("CurrentPage");
+                if (text == null) {
+                    text = "1";
+                }
+                ArrayList<ProductModel> products;
+                int currentPage = Integer.parseInt(text);
+                int totalPage;
+                ArrayList<NumberPagination> arrNumPagin = new ArrayList<NumberPagination>();
+                if (currentPage > 0) {
+                    DataDAO dataController = new DataDAO();
+                    int tempPageNumber = dataController.getNumberProduct();
+                    int numberOfPage = tempPageNumber / 5;
+                    if (tempPageNumber % 5 != 0) {
+                        numberOfPage++;
+                    }
+                    int temp = 5 * currentPage - 4;
+                  
+                    products = dataController.getProduct(currentPage);
+                    if (!products.isEmpty()) {
+                        for (int i = 1; i <= numberOfPage; i++) {
+                            if (i == currentPage) {
+                                arrNumPagin.add(new NumberPagination(1, Integer.toString(i)));
+                            } else {
+                                arrNumPagin.add(new NumberPagination(2, Integer.toString(i)));
+                            }
+                        }
+                    }
+                    request.setAttribute("Products", products);
+                    request.setAttribute("arrNumPagination", arrNumPagin);
+                    request.getRequestDispatcher("/Web-Content/OverView.jsp").forward(request, response);
+                }
             } catch (Exception e) {
-                page = 1;
+                request.getRequestDispatcher("/Web-Content/Error.jsp").forward(request, response);
             }
-            int tempPageNumber = daoProduct.getNumberProduct();//lay so san pham
-            int numberOfPage = tempPageNumber / 5;
-            if (tempPageNumber % 5 != 0) {
-                numberOfPage++;
-            }
-            int temp = 5 * page - 4;
-
-            product = daoProduct.getProduct();   
-            request.setAttribute("Product", product);
-            request.setAttribute("Page", page);
-            request.setAttribute("NumberOfPage", numberOfPage);
-            getServletContext().getRequestDispatcher("/User/Products.jsp").forward(request, response);
-        } catch (Exception e) {
-            System.out.println(e);
-            response.sendRedirect("ErrorPage.jsp");
         }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

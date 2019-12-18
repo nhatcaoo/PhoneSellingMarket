@@ -19,7 +19,7 @@
             <!-- the menu bar background color red -->
             <div id="menuBar">
                 <a href="/P015/HomeController" class="subMenuBar noneLine">Home</a>
-                <a href="/P015/OverViewController?CurrentPage=1" class="subMenuBar noneLine fontBold">View Cart</a>
+                <a href="/P015/OverViewController?CurrentPage=1" class="subMenuBar noneLine">View Cart</a>
                 <a href="/P015/FindController" class="subMenuBar noneLine">Logout</a>
             </div>
             <!-- display all content and advertising -->
@@ -27,11 +27,11 @@
                 <!-- display all blog (list blog) -->
                 <div id="listBlogs" class="fontArial">
                     <!-- display sub content -->
-                    <h1 class="fontTimeNewRoman">${cake.title}:${cake.price}$</h1>
+                    <h1 class="fontTimeNewRoman">${product.productName}:${product.price}$</h1>
                     <div id="contentDetail">
                         <span>
-                            <img class="imgDetail floatRight" src="${cake.picture}"/>
-                            <p class="fontSortDescription magin">${cake.content}</p>
+                            <img class="imgDetail floatRight" src="${product.pricture}"/>
+                            <p class="fontSortDescription magin">${product.productContent}</p>
                         </span>
                     </div>
             </div>
