@@ -4,9 +4,25 @@
         <servlet-name>loo</servlet-name>
         <servlet-class>controller.loo</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoginController</servlet-name>
+        <servlet-class>controller.LoginController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HomeContronller</servlet-name>
+        <servlet-class>controller.HomeContronller</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loo</servlet-name>
         <url-pattern>/loo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginController</servlet-name>
+        <url-pattern>/LoginController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HomeContronller</servlet-name>
+        <url-pattern>/HomeContronller</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
