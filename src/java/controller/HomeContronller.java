@@ -5,8 +5,12 @@
  */
 package controller;
 
+import Model.ProductModel;
+import dal.DataDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,9 +34,35 @@ public class HomeContronller extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-           
+        try {
+              /* TODO output your page here. You may use following sample code. */
+         
+            List<ProductModel> product = new ArrayList<>();
+            DataDAO daoProduct = new DataDAO();
+
+            int page = 1;
+            try {
+                page = Integer.parseInt(request.getParameter("page"));
+            } catch (Exception e) {
+                page = 1;
+            }
+            int tempPageNumber = daoProduct.getNumberProduct();//lay so san pham
+            int numberOfPage = tempPageNumber / 5;
+            if (tempPageNumber % 5 != 0) {
+                numberOfPage++;
+            }
+            int temp = 5 * page - 4;
+
+            product = daoProduct.getProduct();   
+            request.setAttribute("Product", product);
+            request.setAttribute("Page", page);
+            request.setAttribute("NumberOfPage", numberOfPage);
+            getServletContext().getRequestDispatcher("/User/Products.jsp").forward(request, response);
+        } catch (Exception e) {
+            System.out.println(e);
+            response.sendRedirect("ErrorPage.jsp");
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
