@@ -10,42 +10,41 @@ package Model;
  * @author Beloyten
  */
 public class UserModel {
-    private int UserID;
-    private String UserName;
-    private String Password;
+    private int userID;
+    private String userName;
+    private String password;
 
     public UserModel() {
     }
 
-    public UserModel(int UserID, String UserName, String Password) {
-        this.UserID = UserID;
-        this.UserName = UserName;
-        this.Password = Password;
+    public UserModel(int userID, String userName, String password) {
+        this.userID = userID;
+        this.userName = userName;
+        this.password = password;
     }
 
     public int getUserID() {
-        return UserID;
+        return userID;
     }
 
-    public void setUserID(int UserID) {
-        this.UserID = UserID;
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
     public String getUserName() {
-        return UserName;
+        return userName;
     }
 
-    public void setUserName(String UserName) {
-        this.UserName = UserName;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
-        return Password;
+        return password;
     }
 
-    public void setPassword(String Password) {
-        this.Password = Password;
+    public void setPassword(String password) {
+        this.password = password;
     }
-    
-    
+
 }

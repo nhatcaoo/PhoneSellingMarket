@@ -5,11 +5,13 @@
  */
 package controller;
 
+import Model.CartModel;
 import Model.ProductModel;
 import dal.DataDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,16 +34,34 @@ public class DetailController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-      try (PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+            DataDAO dataController = new DataDAO();
             try {
                 String sID = request.getParameter("ID");
-                int id = Integer.parseInt(sID);
-                    DataDAO dataController = new DataDAO();
-                ProductModel product = dataController.getPrsDetail(id);
-         
-                request.setAttribute("product",product);
-                request.getRequestDispatcher("/Web-Content/Detail.jsp").forward(request, response);
+                String quantity = request.getParameter("quantity");
+                if (quantity == null) {
+                    int id = Integer.parseInt(sID);
+
+                    ProductModel product = dataController.getPrsDetail(id);
+
+                    request.setAttribute("product", product);
+                    request.getRequestDispatcher("/Web-Content/Detail.jsp").forward(request, response);
+                } else {
+                    Cookie[] cookies = request.getCookies();
+                    int userID = 0;
+                    if (cookies != null) {
+                        for (Cookie cookie : cookies) {
+                            if (cookie.getName().equals("userID")) {
+                                userID = Integer.parseInt(cookie.getValue());
+                            }
+                        }
+                    }
+                    dataController.insertCart(new CartModel(userID, Integer.parseInt(sID), Integer.parseInt(quantity)));
+                    //ProductModel product = dataController.getPrsDetail(Integer.parseInt(sID));
+                      response.sendRedirect("/PhoneSellingMarket/CartController");
+                 //   request.getRequestDispatcher("/PhoneSellingMarket/CartController").forward(request, response);
+                }
             } catch (Exception e) {
                 request.getRequestDispatcher("/Web-Content/Error.jsp").forward(request, response);
             }
@@ -75,6 +95,7 @@ public class DetailController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+
     }
 
     /**

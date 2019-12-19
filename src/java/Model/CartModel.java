@@ -16,25 +16,34 @@ public class CartModel {
     private int cartID;
     private int status;
     private String picture;
+    private String content;
+    private String name;
+    private float price;
 
-    public CartModel() {
-    }
-
-    public CartModel(int userID, int productID, int quantity, int cartID, int status) {
-        this.userID = userID;
-        this.productID = productID;
-        this.quantity = quantity;
-        this.cartID = cartID;
-        this.status = status;
-    }
-
-    public CartModel(int userID, int productID, int quantity, int cartID, int status, String picture) {
+    public CartModel(int userID, int productID, int quantity, int cartID, int status, String picture, String content, String name, float price) {
         this.userID = userID;
         this.productID = productID;
         this.quantity = quantity;
         this.cartID = cartID;
         this.status = status;
         this.picture = picture;
+        this.content = content;
+        this.name = name;
+        this.price = price;
+    }
+
+    public CartModel(int userID, int productID, int quantity) {
+        this.userID = userID;
+        this.productID = productID;
+        this.quantity = quantity;
+    }
+
+    public CartModel(int productID, int quantity) {
+        this.productID = productID;
+        this.quantity = quantity;
+    }
+
+    public CartModel() {
     }
 
     public int getUserID() {
@@ -77,7 +86,6 @@ public class CartModel {
         this.status = status;
     }
 
-    
     public String getPicture() {
         return picture;
     }
@@ -86,7 +94,32 @@ public class CartModel {
         this.picture = picture;
     }
 
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
     
+
+   
     
     
 }

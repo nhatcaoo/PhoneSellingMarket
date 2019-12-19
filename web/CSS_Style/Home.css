@@ -9,7 +9,7 @@ and open the template in the editor.
 */
 body{
     margin: 0px;
-    background-image: url(/J3.L.P0015/image/backgroud.jpg);
+    background-image: url(/PhoneSellingMarket/image/background.jpg);
     background-repeat: no-repeat;
     background-position: center top;
     background-attachment: fixed;
@@ -40,11 +40,11 @@ body{
     padding-left: 2%;
     padding-right: 2%;
     padding-bottom: 0px;
-    background-color: #f68c1f;
+    background-color: #F32FC9 ;
 }
 /*The menu bar*/
 #menuBar{
-    background-color: #890400;
+    background-color: #8910C1 ;
     height: 25px;
     width: 100%;
     margin: 0px;
@@ -245,6 +245,9 @@ body{
 .floatRight{
     float: right;
 }
+.floatLeft{
+    float: left;
+}
 .SharePage{
     font-size: 23px;
     margin-top: 10px;
@@ -295,6 +298,19 @@ body{
 .imgDetail{
     width: 50%;
     height: 250px;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 0px;
+    padding: 0px;
+    border: 1px;
+    border-radius: 15px;
+    min-width: 25%;
+    min-height: 175px;
+}
+.imgCart{
+    width: 50%;
+    height: 50px;
     margin-top: 0px;
     margin-bottom: 20px;
     margin-left: 20px;

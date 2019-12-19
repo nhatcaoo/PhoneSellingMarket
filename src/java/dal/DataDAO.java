@@ -5,6 +5,8 @@
  */
 package dal;
 
+import Model.CartModel;
+import Model.CatalogueModel;
 import Model.ProductModel;
 import Model.UserModel;
 import Query.Query;
@@ -27,6 +29,27 @@ public class DataDAO {
 
     Query query = new Query();
     
+            
+             public ArrayList<CatalogueModel> getCatalogue() throws Exception {
+        ArrayList<CatalogueModel> prs = new ArrayList<>();
+        try {
+            DBContext db = new DBContext();
+            Connection con = db.getConnection();
+            PreparedStatement pre = con.prepareStatement(query.Show_Catalogue);
+            ResultSet rs = pre.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                String name = rs.getString(2);
+                prs.add(new CatalogueModel(id, name));
+            }
+
+        } catch (SQLException ex) {
+
+            Logger.getLogger(DataDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw ex;
+        }
+        return prs;
+    }
     public ArrayList<ProductModel> getProduct(int i) throws Exception {
         ArrayList<ProductModel> list = new ArrayList();
         String sql = "  WITH TblCte as (SELECT  *,ROW_NUMBER() OVER (ORDER BY productID) RowNumber FROM Product)\n" +
@@ -168,4 +191,52 @@ public class DataDAO {
         }
         return null;
     }
+    
+    public List<CartModel> getCart(int i) throws Exception {
+        
+        List<CartModel> prs = new ArrayList<>();
+        try {
+            DBContext db = new DBContext();
+            Connection con = db.getConnection();
+            PreparedStatement pre = con.prepareStatement(query.Show_Cart);
+            pre.setInt(1, i);
+            ResultSet rs = pre.executeQuery();
+            while (rs.next()) {
+                int userID = rs.getInt(1);
+                int productID = rs.getInt(2);
+                int quantity = rs.getInt(3);
+                int cartID = rs.getInt(4);
+                int status = rs.getInt(5);
+                String urlImage = "/PhoneSellingMarket/image" + "/" + rs.getString(6);
+                String content = rs.getString(7);
+                String name = rs.getString(8);
+                float price = rs.getFloat(9);
+                prs.add(new CartModel(userID, productID, quantity, cartID, status, urlImage, content, name, price)) ;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductModel.class.getName()).log(Level.SEVERE, null, ex);
+            throw ex;
+        }
+        return prs;
+    }
+    
+    public void insertCart(CartModel cart) throws Exception{
+        try {
+            //UserID, ProductID, Quantity, Status
+            DBContext db = new DBContext();
+            Connection con = db.getConnection();
+            PreparedStatement pre = con.prepareStatement(query.Insert_Cart);
+            pre.setInt(1, cart.getUserID());
+            pre.setInt(2, cart.getProductID());
+            pre.setInt(3, cart.getQuantity());
+            pre.setInt(4, 0);
+            pre.executeUpdate();
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductModel.class.getName()).log(Level.SEVERE, null, ex);
+            throw ex;
+        }
+    
+    }
 }
+

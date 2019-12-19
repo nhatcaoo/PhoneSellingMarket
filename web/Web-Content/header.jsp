@@ -4,8 +4,8 @@
     Author     : duydnse04661
 --%>
 
- <link href="/P015/CSS_Style/Home.css" rel="stylesheet" type="text/css"/>
+ <link href="/PhoneSellingMarket/CSS_Style/Home.css" rel="stylesheet" type="text/css"/>
 <div id="bigHeader">
                 <h1 class="magin logo">Loan's Phone</h1>
-                <p class="colorWhite fontTimeNewRoman subLogo colorWhite">Bring your smartest technology devices to your fucking home</p>
+                <p class="colorWhite fontTimeNewRoman subLogo colorWhite">Bring your smartest technology devices to your home</p>
             </div>

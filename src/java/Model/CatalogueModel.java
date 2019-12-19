@@ -10,31 +10,33 @@ package Model;
  * @author Beloyten
  */
 public class CatalogueModel {
-    private int CatalogueID;
-    private String CatalogueName;
+    private int catalogueID;
+    private String catalogueName;
+
+    public int getCatalogueID() {
+        return catalogueID;
+    }
+
+    public void setCatalogueID(int catalogueID) {
+        this.catalogueID = catalogueID;
+    }
+
+    public String getCatalogueName() {
+        return catalogueName;
+    }
+
+    public void setCatalogueName(String catalogueName) {
+        this.catalogueName = catalogueName;
+    }
+
+    public CatalogueModel(int catalogueID, String catalogueName) {
+        this.catalogueID = catalogueID;
+        this.catalogueName = catalogueName;
+    }
 
     public CatalogueModel() {
     }
 
-    public CatalogueModel(int CatalogueID, String CatalogueName) {
-        this.CatalogueID = CatalogueID;
-        this.CatalogueName = CatalogueName;
-    }
-
-    public int getCatalogueID() {
-        return CatalogueID;
-    }
-
-    public void setCatalogueID(int CatalogueID) {
-        this.CatalogueID = CatalogueID;
-    }
-
-    public String getCatalogueName() {
-        return CatalogueName;
-    }
-
-    public void setCatalogueName(String CatalogueName) {
-        this.CatalogueName = CatalogueName;
-    }
+  
     
 }

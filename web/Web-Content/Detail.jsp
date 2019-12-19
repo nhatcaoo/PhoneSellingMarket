@@ -18,9 +18,9 @@
             <%@include file="header.jsp" %>
             <!-- the menu bar background color red -->
             <div id="menuBar">
-                <a href="/P015/HomeController" class="subMenuBar noneLine">Home</a>
-                <a href="/P015/OverViewController?CurrentPage=1" class="subMenuBar noneLine">View Cart</a>
-                <a href="/P015/FindController" class="subMenuBar noneLine">Logout</a>
+                <a href="/PhoneSellingMarket/HomeContronller" class="subMenuBar noneLine fontBold">Home</a>
+                <a href="/PhoneSellingMarket/CartController" class="subMenuBar noneLine ">View Cart</a>
+                <a href="/PhoneSellingMarket/LoginController" class="subMenuBar noneLine">Logout</a>
             </div>
             <!-- display all content and advertising -->
             <div id="bigContener">
@@ -32,6 +32,12 @@
                         <span>
                             <img class="imgDetail floatRight" src="${product.pricture}"/>
                             <p class="fontSortDescription magin">${product.productContent}</p>
+                            <br>
+                            <form method="GET" style="text-align: center;">
+                                <input value="" name="quantity">
+                                <input type ="hidden" name ="ID" value="<%= request.getParameter("ID") %>">
+                                <button type="submit">Add to cart</button>
+                            </form>
                         </span>
                     </div>
             </div>

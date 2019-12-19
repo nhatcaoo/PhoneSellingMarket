@@ -20,18 +20,16 @@
             <!-- the menu bar background color red -->
             <div id="menuBar">
 
-                <a href="/P015/HomeController" class="subMenuBar noneLine">Home</a>
-                <a href="/P015/OverViewController?CurrentPage=1" class="subMenuBar noneLine fontBold">View Cart</a>
-                <a href="/P015/FindController" class="subMenuBar noneLine">Logout</a>
+                <a href="/PhoneSellingMarket/HomeContronller" class="subMenuBar noneLine fontBold">Home</a>
+                <a href="/PhoneSellingMarket/CartController" class="subMenuBar noneLine ">View Cart</a>
+                <a href="/PhoneSellingMarket/LoginController" class="subMenuBar noneLine">Logout</a>
                 <form name="form1" method="get" style="margin-left: 750px; margin-top: -20px;" action="servlet/PrintResultsServlet"> 
 
                     <select name="Events">
-                           
-                        <option value="0" selected>Select Catalogue</option>
-                        <option value="100M Run">100M Run</option>
-                        <option value="200M Run">200M Run</option>
-                        <option value="400M Run">400M Run</option>
-                        <option value="800M Run">800M Run</option>
+                            <c:forEach items="${catalogues}" var="row">
+                        
+                        <option >${row.catalogueName}</option>
+                            </c:forEach>
                     </select>
                 </form>
                 <form name="form2" method="POST" style="margin-left: 900px; margin-top: -20px;">

@@ -5,7 +5,7 @@
  */
 package controller;
 
-import Model.CatalogueModel;
+import Model.CartModel;
 import Model.NumberPagination;
 import Model.ProductModel;
 import dal.DataDAO;
@@ -14,15 +14,16 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author This PC
+ * @author Beloyten
  */
-public class HomeContronller extends HttpServlet {
+public class CartController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,44 +36,30 @@ public class HomeContronller extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");        
+        response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             try {
-                String text = (String) request.getParameter("CurrentPage");
-                if (text == null) {
-                    text = "1";
-                }
-                ArrayList<ProductModel> products;
-                int currentPage = Integer.parseInt(text);
-                int totalPage;
+
+                List<CartModel> carts = new ArrayList<>();
+
                 ArrayList<NumberPagination> arrNumPagin = new ArrayList<NumberPagination>();
-                if (currentPage > 0) {
-                    DataDAO dataController = new DataDAO();
-                    int tempPageNumber = dataController.getNumberProduct();
-                    int numberOfPage = tempPageNumber / 5;
-                     ArrayList<CatalogueModel> catalogues = new ArrayList<CatalogueModel>();
-                     catalogues = dataController.getCatalogue();
-                    if (tempPageNumber % 5 != 0) {
-                        numberOfPage++;
-                    }
-                    int temp = 5 * currentPage - 4;
-                  
-                    products = dataController.getProduct(currentPage);
-                    if (!products.isEmpty()) {
-                        for (int i = 1; i <= numberOfPage; i++) {
-                            if (i == currentPage) {
-                                arrNumPagin.add(new NumberPagination(1, Integer.toString(i)));
-                            } else {
-                                arrNumPagin.add(new NumberPagination(2, Integer.toString(i)));
+                DataDAO dataController = new DataDAO();
+                    Cookie[] cookies = request.getCookies();
+                    int userID = 0;
+                    if (cookies != null) {
+                        for (Cookie cookie : cookies) {
+                            if (cookie.getName().equals("userID")) {
+                                userID = Integer.parseInt(cookie.getValue());
                             }
                         }
                     }
-                    request.setAttribute("catalogues", catalogues);
-                    request.setAttribute("Products", products);
-                    request.setAttribute("arrNumPagination", arrNumPagin);
-                    request.getRequestDispatcher("/Web-Content/OverView.jsp").forward(request, response);
-                }
+                carts = dataController.getCart(userID);
+
+                request.setAttribute("carts", carts);
+                   
+                request.getRequestDispatcher("/Web-Content/ViewCart.jsp").forward(request, response);
+
             } catch (Exception e) {
                 request.getRequestDispatcher("/Web-Content/Error.jsp").forward(request, response);
             }

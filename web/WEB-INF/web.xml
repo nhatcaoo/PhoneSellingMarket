@@ -16,6 +16,10 @@
         <servlet-name>DetailController</servlet-name>
         <servlet-class>controller.DetailController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CartController</servlet-name>
+        <servlet-class>controller.CartController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loo</servlet-name>
         <url-pattern>/loo</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>DetailController</servlet-name>
         <url-pattern>/DetailController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CartController</servlet-name>
+        <url-pattern>/CartController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
