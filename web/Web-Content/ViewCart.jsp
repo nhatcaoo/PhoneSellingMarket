@@ -18,13 +18,7 @@
             <!-- the big header content logo and sub blog -->
             <%@include file="header.jsp" %>
             <!-- the menu bar background color red -->
-            <div id="menuBar">
-
-                <a href="/PhoneSellingMarket/HomeContronller" class="subMenuBar noneLine fontBold">Home</a>
-                <a href="/PhoneSellingMarket/CartController" class="subMenuBar noneLine ">View Cart</a>
-                <a href="/PhoneSellingMarket/LoginController" class="subMenuBar noneLine">Logout</a>              
-
-            </div>
+           
             <!-- display all content and advertising -->
             <div id="bigContener">
                 <!-- display all blog (list blog) -->

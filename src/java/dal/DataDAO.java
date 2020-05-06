@@ -28,9 +28,9 @@ import java.util.logging.Logger;
 public class DataDAO {
 
     Query query = new Query();
-    
+
             
-             public ArrayList<CatalogueModel> getCatalogue() throws Exception {
+    public ArrayList<CatalogueModel> getCatalogue() throws Exception {
         ArrayList<CatalogueModel> prs = new ArrayList<>();
         try {
             DBContext db = new DBContext();
@@ -50,18 +50,19 @@ public class DataDAO {
         }
         return prs;
     }
+
     public ArrayList<ProductModel> getProduct(int i) throws Exception {
         ArrayList<ProductModel> list = new ArrayList();
-        String sql = "  WITH TblCte as (SELECT  *,ROW_NUMBER() OVER (ORDER BY productID) RowNumber FROM Product)\n" +
-"                SELECT  * FROM TblCte WHERE RowNumber between ? and ?";
+        String sql = "  WITH TblCte as (SELECT  *,ROW_NUMBER() OVER (ORDER BY productID) RowNumber FROM Product)\n"
+                + "                SELECT  * FROM TblCte WHERE RowNumber between ? and ?";
         try {
-              DBContext db = new DBContext();
+            DBContext db = new DBContext();
             Connection con = db.getConnection();
             PreparedStatement pre = con.prepareStatement(sql);
-            pre.setInt(1, (i-1)*5+1);
+            pre.setInt(1, (i - 1) * 5 + 1);
             pre.setInt(2, (i + 4));
             ResultSet rs = pre.executeQuery();
-           
+
             while (rs.next()) {
                 int ProductId = rs.getInt(1);
                 String ProductName = rs.getString(2);
@@ -72,9 +73,9 @@ public class DataDAO {
 
                 list.add(new ProductModel(ProductId, ProductName, ProductContent, urlImage, Price, CatalogueId));
             }
-          
+
         } catch (SQLException ex) {
-           
+
             Logger.getLogger(DataDAO.class.getName()).log(Level.SEVERE, null, ex);
             throw ex;
         }
@@ -82,6 +83,7 @@ public class DataDAO {
         return list;
 
     }
+
     public ArrayList<ProductModel> getProduct() throws Exception {
         ArrayList<ProductModel> prs = new ArrayList<>();
         try {
@@ -107,7 +109,7 @@ public class DataDAO {
         }
         return prs;
     }
-    
+
     public List<UserModel> selectAccount() throws Exception {
         try {
             List<UserModel> list = new ArrayList<>();
@@ -153,7 +155,7 @@ public class DataDAO {
         }
         return prs;
     }
-    
+
     public int getNumberProduct() throws Exception {
         int n = 0;
         try {
@@ -163,14 +165,14 @@ public class DataDAO {
             ResultSet rs = pre.executeQuery();
             while (rs.next()) {
                 n++;
-            }           
-        } catch (SQLException ex) {        
+            }
+        } catch (SQLException ex) {
             Logger.getLogger(ProductModel.class.getName()).log(Level.SEVERE, null, ex);
             throw ex;
         }
         return n;
     }
-    
+
     public String getPassword(String username) throws Exception {
         Connection con = null;
         DBContext db = new DBContext();
@@ -191,9 +193,9 @@ public class DataDAO {
         }
         return null;
     }
-    
+
     public List<CartModel> getCart(int i) throws Exception {
-        
+
         List<CartModel> prs = new ArrayList<>();
         try {
             DBContext db = new DBContext();
@@ -211,7 +213,7 @@ public class DataDAO {
                 String content = rs.getString(7);
                 String name = rs.getString(8);
                 float price = rs.getFloat(9);
-                prs.add(new CartModel(userID, productID, quantity, cartID, status, urlImage, content, name, price)) ;
+                prs.add(new CartModel(userID, productID, quantity, cartID, status, urlImage, content, name, price));
             }
         } catch (SQLException ex) {
             Logger.getLogger(ProductModel.class.getName()).log(Level.SEVERE, null, ex);
@@ -219,8 +221,8 @@ public class DataDAO {
         }
         return prs;
     }
-    
-    public void insertCart(CartModel cart) throws Exception{
+
+    public void insertCart(CartModel cart) throws Exception {
         try {
             //UserID, ProductID, Quantity, Status
             DBContext db = new DBContext();
@@ -231,12 +233,11 @@ public class DataDAO {
             pre.setInt(3, cart.getQuantity());
             pre.setInt(4, 0);
             pre.executeUpdate();
-           
+
         } catch (SQLException ex) {
             Logger.getLogger(ProductModel.class.getName()).log(Level.SEVERE, null, ex);
             throw ex;
         }
-    
+
     }
 }
-

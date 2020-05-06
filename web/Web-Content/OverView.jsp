@@ -18,26 +18,7 @@
             <!-- the big header content logo and sub blog -->
             <%@include file="header.jsp" %>
             <!-- the menu bar background color red -->
-            <div id="menuBar">
-
-                <a href="/PhoneSellingMarket/HomeContronller" class="subMenuBar noneLine fontBold">Home</a>
-                <a href="/PhoneSellingMarket/CartController" class="subMenuBar noneLine ">View Cart</a>
-                <a href="/PhoneSellingMarket/LoginController" class="subMenuBar noneLine">Logout</a>
-                <form name="form1" method="get" style="margin-left: 750px; margin-top: -20px;" action="servlet/PrintResultsServlet"> 
-
-                    <select name="Events">
-                            <c:forEach items="${catalogues}" var="row">
-                        
-                        <option >${row.catalogueName}</option>
-                            </c:forEach>
-                    </select>
-                </form>
-                <form name="form2" method="POST" style="margin-left: 900px; margin-top: -20px;">
-                    <button type="submit">OK</button>
-
-                </form>
-
-            </div>
+      
             <!-- display all content and advertising -->
             <div id="bigContener">
                 <!-- display all blog (list blog) -->
